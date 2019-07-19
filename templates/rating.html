@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rating</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/rating.css')  }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+      <p><a class="link" href="/logout">Logout </a>  </p>
+    <p><a class="link" href="/success">Home|||  </a></p>
+    <h1>Add a book title and review</h1>
+    <form class="rating_form" method="post" action="/books/add_review">
+        <div class="form-group">
+            <label for="formGroupExampleInput">Book title</label>
+            <input type="text" name="book_title" class="form-control" id="formGroupExampleInput" placeholder="book title">
+                {% with msg = get_flashed_messages(category_filter=['book_exist']) %}
+                    {% if msg %}
+                        <p>{{msg[0]}}</p>
+                    {% endif %}
+                {% endwith %}
+        </div>
+        <select class="form-control" id="exampleFormControlSelect1" name="author1">
+            <option></option>
+            {% for author in authors %}
+            <option>{{author.author}}</option>
+            {% endfor %}
+        </select>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Or add new author</label>
+            <input type="text" name="author2" class="form-control" id="formGroupExampleInput2" placeholder="Another author">
+        </div>
+        <div class="mb-3">
+            <label for="formGroupExampleInput2">Review:</label>
+            <textarea name="review" class="form-control"  placeholder="review "></textarea>
+        </div>
+        <p>Rate:</p>
+        <select class="form-control" id="exampleFormControlSelect1" name="star">Rate:
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>s
+            <option>4</option>
+            <option>5</option>
+        </select>
+        <button class="btn btn-primary" type="submit">Add Book and Review</button>
+    </form>
+</body>
+</html>
+

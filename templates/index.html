@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css')  }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+
+    <form class="registration" method="post" action="/registration">
+        <h1>Registration</h1>
+        <div class="form-group">
+            <label>First Name</label>
+            <input type="text" class="form-control" name="username"  placeholder="User name">
+            <div class="alert-box">
+                {% with msg = get_flashed_messages(category_filter=['username']) %}
+                    {% if msg %}
+                        <p>{{msg[0]}}</p>
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Alias</label>
+            <input type="text" class="form-control" name="alias"  placeholder="Alias if refer">
+            <div class="alert-box"></div>
+        </div>
+        <div class="form-group">
+            <label>Email address</label>
+            <input type="text" class="form-control" name="email" placeholder="Enter email">
+            <div class="alert-box">
+                {% with msg = get_flashed_messages(category_filter=['email']) %}
+                    {% if msg %}
+                        <p >{{msg[0]}}</p>
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="text" class="form-control" name="password1" placeholder="Password">
+            <div class="alert-box">
+                {% with msg = get_flashed_messages(category_filter=['password1']) %}
+                    {% if msg %}
+                        <p>{{msg[0]}}</p>
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="text" class="form-control" name="password2" placeholder="Password">
+            <div class="alert-box">
+                {% with msg = get_flashed_messages(category_filter=['password2']) %}
+                    {% if msg %}
+                        <p> {{msg[0]}}</p>
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Registration</button>
+    </form>
+
+    <form class="login" method="post" action="/login">
+        <h1>Login</h1>
+      <div class="form-group">
+        <label>Email address</label>
+        <input type="text" class="form-control" name="login_email" placeholder="Enter email">
+          <div class="alert-box">
+              {% with msg = get_flashed_messages(category_filter=['password_log']) %}
+                {% if msg %}
+                    <p> {{msg[0]}}</p>
+                {% endif %}
+              {% endwith %}
+          </div>
+          <div>
+
+          </div>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="text" class="form-control" name="login_password" placeholder="Password">
+          <div class="alert-box">
+          </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Log in</button>
+    </form>
+    </body>
+</html>

@@ -1,0 +1,41 @@
+.box1{
+    display: inline-block;
+    width: 350px;
+    vertical-align: top;
+}
+.box2{
+    display: inline-block;
+    width: 350px;
+    vertical-align: top;
+}
+.box_book{
+    height: 150px;
+    width: 200px;
+    border: 2px solid red;
+    overflow: scroll;
+    vertical-align: top;
+    margin-bottom: 150px;
+}
+.book{
+    text-decoration: underline blue;
+    color: mediumblue;
+
+}
+.checked {
+  color: orange;
+}
+.username{
+    display: inline;
+    color: Blue;
+    text-decoration: underline;
+}
+.comment{
+    display: inline;
+}
+.link{
+    float :right;
+}
+
+#container{
+    width: 800px;
+}

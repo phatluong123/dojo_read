@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/books.css')  }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <h1>Welcome! {{user_name}}</h1>
+    <a class="link" href="/logout">Logout</a>
+    <p><a class="link" href="/books/add"> Add book and review </a></p>
+    <div class="box1">
+        {% for review in reviews %}
+                    <a href="/books/{{review.book_id}}">{{review.title}}</a>
+                    <div>Rating:
+                    {% for rat in  range(0,review.rating) %}
+                    <span class="fa fa-star checked"></span>
+                    {% endfor %}
+                    {% for empty in  range(review.rating,5) %}
+                    <span class="fa fa-star"></span>
+                    {% endfor %}
+                    </div>
+                    <p class="username"><a href="/user/{{review.user_id}}"></a>{{review.name}} </p><p class="comment">say : {{ review.comment}}</p>
+                    <p>Post on : {{review.created_at}}</p>
+        {% endfor%}
+    </div>
+    <div class="box2">
+        <h2>Other books to review</h2>
+        <div class="box_book">
+            {% for book in books %}
+            <p><a href="/books/{{book.id}}">{{book.title}}</a></p>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>

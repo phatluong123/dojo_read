@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/books.css')  }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body id="container">
+    {% if reviews %}
+        <h1>{{reviews[0].title}}</h1>
+        <p>Author: {{reviews[0].author}}</p>
+    {% endif %}
+
+    {% if book %}
+         <h1>{{book[0].title}}</h1>
+        <p>Author: {{book[0].author}}</p>
+    {% endif %}
+      <p><a class="link" href="/logout">Logout </a>  </p>
+    <p><a class="link" href="/success">Home|||  </a></p>
+    <div class="box1">
+        <h3>Review</h3>
+        {% if reviews %}
+        {% for review in reviews %}
+                    <hr>
+                    <div>Rating:
+                    {% for rat in  range(0,review.rating) %}
+                    <span class="fa fa-star checked"></span>
+                    {% endfor %}
+                    {% for empty in  range(review.rating,5) %}
+                    <span class="fa fa-star"></span>
+                    {% endfor %}
+                    </div>
+                    <a href="/user/{{review.user_id}}">{{review.name}}</a><p class="comment">say : {{ review.comment}}</p>
+                    <p>Post on : {{review.created_at}}</p>
+                    <p>
+                        {% if session.user_id == (review.user_id) %}
+                        <a href="/delete/{{review.review_id}}/{{review.book_id}}">Delete</a>
+                        {% endif %}
+                    </p>
+        {% endfor%}
+        {% endif %}
+        {% if book %}
+        <p> no one review it yet</p>
+        {% endif %}
+    </div>
+    <div class="box2">
+        {% if reviews %}
+        <form method="post" action="/books/{{reviews[0].book_id}}/add_new_review">
+            <h4>Add a Review : </h4>
+            <div class="mb-3">
+                <textarea name="review" class="form-control"  placeholder="review "></textarea>
+            </div>
+            <select class="form-control" id="exampleFormControlSelect1" name="star">Rate:
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <button class="btn btn-primary" type="submit">Submit Review</button>
+        </form>
+        {% endif %}
+        {% if book %}
+        <form method="post" action="/books/{{book[0].id}}/add_new_review">
+            <h4>Add a Review : </h4>
+            <div class="mb-3">
+                <textarea name="review" class="form-control"  placeholder="review "></textarea>
+            </div>
+            <select class="form-control" id="exampleFormControlSelect1" name="star">Rate:
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <button class="btn btn-primary" type="submit">Submit Review</button>
+        </form>
+        {% endif %}
+        </div>
+    </div>
+
+</body>
+</html>
