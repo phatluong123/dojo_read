@@ -2,7 +2,7 @@ bcrypt==3.1.7
 cffi==1.12.3
 Click==7.0
 cycler==0.10.0
-Django==1.11.9
+Django==1.11.29
 FlashMessage==0.2.0
 FlashPy==0.0.4
 Flask==1.0.3
